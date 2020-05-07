@@ -2,6 +2,8 @@
 
 
 #include "MyCharacterC.h"
+#pragma warning(disable:4996)
+
 
 // Sets default values
 AMyCharacterC::AMyCharacterC()
@@ -15,9 +17,32 @@ AMyCharacterC::AMyCharacterC()
 void AMyCharacterC::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	Connections();
 }
+int AMyCharacterC::Connections() {
+	
+	WSADATA wsaData;
+	WORD DLLVersion = MAKEWORD(2, 1);
+	if (WSAStartup(DLLVersion, &wsaData) != 0) {
+		UE_LOG(LogTemp, Warning, TEXT("Error"));
+		return 1;
+	}
 
+	
+	SOCKADDR_IN addr;
+	int size = sizeof(addr);
+	addr.sin_addr.s_addr = inet_addr("77.121.173.140");
+	addr.sin_port = htons(8080);
+	addr.sin_family = AF_INET;
+	Connection = socket(AF_INET, SOCK_STREAM, NULL);
+	if (connect(Connection, (SOCKADDR*)&addr, sizeof(addr)) != 0) {
+		UE_LOG(LogTemp, Warning, TEXT("Error"));
+		return 1;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Connection"));
+	return 0;
+}
 // Called every frame
 void AMyCharacterC::Tick(float DeltaTime)
 {
