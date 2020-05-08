@@ -27,7 +27,7 @@ protected:
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, Category = "Connection")
 	int Connections();
-	void clientHandel();
+	
 private:
 	SOCKET Connection;
 	SOCKADDR_IN addr;

@@ -43,8 +43,7 @@ int AMyCharacterC::Connections() {
 		return 1;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Connection"));
-	thread th(clientHandel);
-	th.detach();
+	
 
 	return 0;
 }
@@ -54,18 +53,7 @@ void AMyCharacterC::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-void AMyCharacterC::clientHandel() {
-	char msg[256];
-	char tampname[40];
-	FString name;
-	while (true) {
-		recv(Connection, tampname, sizeof(tampname), NULL);
-		recv(Connection, msg, sizeof(msg), NULL);
-		name = "Name:" + tampname + " Message: "+msg;
-		UE_LOG(LogTemp, Warning, TEXT(name));
 
-	}
-}
 // Called to bind functionality to input
 void AMyCharacterC::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
