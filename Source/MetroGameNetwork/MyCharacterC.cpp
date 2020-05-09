@@ -3,6 +3,7 @@
 //s
 #include "MyCharacterC.h"
 #include<cstring>
+#include<string>
 #include<thread>
 using namespace std;
 #pragma warning(disable:4996)
@@ -21,6 +22,21 @@ void AMyCharacterC::BeginPlay()
 {
 	Super::BeginPlay();
 	Connections();
+}
+void AMyCharacterC::ClientHand() {
+	char msg[256];
+	char tampname[40];
+	
+	
+	while (true) {
+		recv(Connection, tampname, sizeof(tampname), NULL);
+		recv(Connection, msg, sizeof(msg), NULL);
+		FString t(tampname);
+		FString m(msg);
+		UE_LOG(LogTemp, Warning, TEXT("Name :%s"),*t);
+		UE_LOG(LogTemp, Warning, TEXT("Massag :%s"),*m);
+
+	}
 }
 int AMyCharacterC::Connections() {
 	
@@ -43,10 +59,13 @@ int AMyCharacterC::Connections() {
 		return 1;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Connection"));
-	
+	thread th(&AMyCharacterC::ClientHand,this);
+	th.detach();
+
 
 	return 0;
 }
+
 // Called every frame
 void AMyCharacterC::Tick(float DeltaTime)
 {

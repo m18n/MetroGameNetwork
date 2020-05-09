@@ -31,5 +31,5 @@ protected:
 private:
 	SOCKET Connection;
 	SOCKADDR_IN addr;
-
+	void ClientHand();
 };
