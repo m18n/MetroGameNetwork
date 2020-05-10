@@ -17,7 +17,8 @@ AMyCharacterC::AMyCharacterC()
 void AMyCharacterC::BeginPlay()
 {
 	Super::BeginPlay();
-	Connections();
+	if(serveron==true)
+		Connections();
 }
 int AMyCharacterC::Connections() {
 	
