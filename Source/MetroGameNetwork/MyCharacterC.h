@@ -2,10 +2,14 @@
 //vau
 //b
 #pragma once
+
 #define WIN32_LEAN_AND_MEAN
 #pragma comment(lib,"ws2_32.lib")
 #include<WinSock2.h>
 #include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
+#include "UObject/ConstructorHelpers.h"
+#include "GameFramework/Actor.h"
 #include "GameFramework/Character.h"
 #include "MyCharacterC.generated.h"
 
@@ -27,7 +31,8 @@ protected:
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, Category = "Connection")
 	int Connections();
-	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AActor* mishal;
 private:
 	SOCKET Connection;
 	SOCKADDR_IN addr;
