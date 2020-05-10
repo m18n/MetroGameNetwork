@@ -33,6 +33,8 @@ protected:
 	int Connections();
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	AActor* mishal;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Connection")
+	bool serveron;
 private:
 	SOCKET Connection;
 	SOCKADDR_IN addr;

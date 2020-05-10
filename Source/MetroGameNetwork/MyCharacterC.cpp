@@ -14,21 +14,21 @@ AMyCharacterC::AMyCharacterC()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
 }
 
 // Called when the game starts or when spawned
 void AMyCharacterC::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	Connections();
+	if(serveron==true)
+		Connections();
 }
 void AMyCharacterC::ClientHand() {
 	char msg[256];
 	char tampname[40];
-	
-	
+
+
 	while (true) {
 		recv(Connection, tampname, sizeof(tampname), NULL);
 		recv(Connection, msg, sizeof(msg), NULL);
@@ -40,7 +40,7 @@ void AMyCharacterC::ClientHand() {
 	}
 }
 int AMyCharacterC::Connections() {
-	
+
 	WSADATA wsaData;
 	WORD DLLVersion = MAKEWORD(2, 1);
 	if (WSAStartup(DLLVersion, &wsaData) != 0) {
@@ -48,8 +48,8 @@ int AMyCharacterC::Connections() {
 		return 1;
 	}
 
-	
-	
+
+
 	int size = sizeof(addr);
 	addr.sin_addr.s_addr = inet_addr("77.121.173.140");
 	addr.sin_port = htons(8080);
@@ -80,4 +80,3 @@ void AMyCharacterC::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-
