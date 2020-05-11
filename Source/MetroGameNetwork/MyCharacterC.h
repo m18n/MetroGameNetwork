@@ -29,6 +29,8 @@ protected:
 	int Connections();
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Connection")
 	bool serveron;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pull")
+	int PuulMax=0;
 private:
 	SOCKET Connection;
 	
