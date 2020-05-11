@@ -29,6 +29,10 @@ protected:
 	int Connections();
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Connection")
 	bool serveron;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player")
+	int Armorr;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player")
+		int Heals;
 private:
 	SOCKET Connection;
 	
