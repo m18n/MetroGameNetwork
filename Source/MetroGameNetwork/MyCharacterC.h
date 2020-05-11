@@ -36,7 +36,8 @@ protected:
 		int Heals;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pull")
 	int PuulMax=0;
-
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "PLayer")
+		int HelsPlys ;
 private:
 	SOCKET Connection;
 	
