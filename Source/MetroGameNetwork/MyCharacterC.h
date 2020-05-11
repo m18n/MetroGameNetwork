@@ -27,6 +27,8 @@ protected:
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, Category = "Connection")
 	int Connections();
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Connection")
+	bool serveron;
 private:
 	SOCKET Connection;
 	
