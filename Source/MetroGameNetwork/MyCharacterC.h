@@ -30,7 +30,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Connection")
 	bool serveron;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pull")
-	int PuulMax=0;
+	int PuulMax=100;
 private:
 	SOCKET Connection;
 	
